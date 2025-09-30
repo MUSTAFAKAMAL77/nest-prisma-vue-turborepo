@@ -1,0 +1,38 @@
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
+import { Create{{pascalCase name}}Dto } from './dto/create-{{dashCase name}}.dto';
+import { Update{{pascalCase name}}Dto } from './dto/update-{{dashCase name}}.dto';
+
+@Injectable()
+export class {{pascalCase name}}Service {
+  constructor(private prisma: PrismaService) {}
+
+  async findAll() {
+    return this.prisma.{{camelCase name}}.findMany();
+  }
+
+  async findOne(id: string) {
+    return this.prisma.{{camelCase name}}.findUnique({
+      where: { id },
+    });
+  }
+
+  async create(data: Create{{pascalCase name}}Dto) {
+    return this.prisma.{{camelCase name}}.create({
+      data,
+    });
+  }
+
+  async update(id: string, data: Update{{pascalCase name}}Dto) {
+    return this.prisma.{{camelCase name}}.update({
+      where: { id },
+      data,
+    });
+  }
+
+  async remove(id: string) {
+    return this.prisma.{{camelCase name}}.delete({
+      where: { id },
+    });
+  }
+}
